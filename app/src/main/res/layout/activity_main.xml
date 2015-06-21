@@ -21,9 +21,16 @@
         android:text="Get Preferences"
         android:onClick="getPreferences"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Second Activity"
+        android:onClick="startActivity"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"/>
+
 
 </LinearLayout>
