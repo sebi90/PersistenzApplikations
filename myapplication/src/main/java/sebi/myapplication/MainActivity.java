@@ -8,18 +8,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class MainActivity extends Activity {
 
     public static final String PREFS_NAME = "MyPrefsFile";
     public static final String PREFS_VALUE = "MyStringValue";
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    private static final String FILE = "File1";
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -32,6 +39,28 @@ public class MainActivity extends Activity {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         textView.setText("");
         textView.setText(prefs.getString(PREFS_VALUE,"No Val"));
+    }
+
+    public void readFile (View view) throws IOException
+    {
+
+        String result = "", line;
+        FileInputStream fis;
+        fis = openFileInput(FILE);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+        while ((line = reader.readLine()) != null)
+        {
+            result = result + line;
+        }
+
+        reader.close();
+        fis.close();
+
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(result);
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

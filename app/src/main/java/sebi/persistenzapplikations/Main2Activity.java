@@ -8,11 +8,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main2Activity extends Activity {
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String PREFS_VALUE = "MyStringValue";
-
+    private static final String FILE = "File1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,27 @@ public class Main2Activity extends Activity {
         textView.setText(prefs.getString(PREFS_VALUE,"No Val"));
     }
 
+    public void readFile (View view) throws IOException
+    {
+
+        String result = "", line;
+        FileInputStream fis;
+        fis = openFileInput(FILE);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+        while ((line = reader.readLine()) != null)
+        {
+            result = result + line;
+        }
+
+        reader.close();
+        fis.close();
+
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setText(result);
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

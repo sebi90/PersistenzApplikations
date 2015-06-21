@@ -27,6 +27,12 @@
         android:text="Start Second Activity"
         android:onClick="startActivity"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write to File"
+        android:onClick="writeFile"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

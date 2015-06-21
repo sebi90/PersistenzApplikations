@@ -13,10 +13,13 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.FileOutputStream;
+
 public class MainActivity extends Activity {
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String PREFS_VALUE = "MyStringValue";
+    private static final String FILE = "File1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,15 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+
+    public void writeFile(View view) throws Exception
+    {
+        EditText editText = (EditText) findViewById(R.id.editText);
+        FileOutputStream fos = openFileOutput(FILE, MODE_PRIVATE);
+        fos.write(editText.getText().toString().getBytes());
+        fos.close();
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

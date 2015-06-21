@@ -9,6 +9,12 @@
         android:text="Get Preferences"
         android:onClick="getPreferences"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read from File"
+        android:onClick="readFile"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
