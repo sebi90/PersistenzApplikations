@@ -43,23 +43,30 @@ public class MainActivity extends Activity {
 
     public void readFile (View view) throws IOException
     {
-
         String result = "", line;
         FileInputStream fis;
-        fis = openFileInput(FILE);
+        TextView textView = (TextView) findViewById(R.id.textView);
+        try {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            fis = openFileInput(FILE);
 
-        while ((line = reader.readLine()) != null)
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+            while ((line = reader.readLine()) != null)
+            {
+                result = result + line;
+            }
+
+            reader.close();
+            fis.close();
+
+
+            textView.setText(result);
+        } catch (IOException e)
         {
-            result = result + line;
+
         }
 
-        reader.close();
-        fis.close();
-
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(result);
 
     }
     @Override
