@@ -36,8 +36,8 @@ public class MainActivity extends Activity {
     public void savePreferences(View view)
     {
         EditText editText = (EditText) findViewById(R.id.editText);
-        // aufgabe e = MODE_MULTI_PROCESS setzen
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_MULTI_PROCESS);
+        // aufgabe e = MODE_MULTI_PROCESS in Main2Activity setzen
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PREFS_VALUE, editText.getText().toString());
 
