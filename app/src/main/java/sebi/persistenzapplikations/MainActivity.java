@@ -13,7 +13,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends Activity {
 
@@ -51,6 +55,28 @@ public class MainActivity extends Activity {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         textView.setText("");
         textView.setText(prefs.getString(PREFS_VALUE,"No Val"));
+    }
+
+    public void readFile (View view) throws IOException
+    {
+
+        String result = "", line;
+        FileInputStream fis;
+        fis = openFileInput(FILE);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+        while ((line = reader.readLine()) != null)
+        {
+            result = result + line;
+        }
+
+        reader.close();
+        fis.close();
+
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(result);
+
     }
 
     //Aufgabe d
